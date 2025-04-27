@@ -113,9 +113,4 @@ README.md
 - The course recommendation is based on a **fuzzy matching threshold of 80%**.
 - The current version uses **basic HTML templates** — can be enhanced later with Bootstrap/Tailwind for UI improvements.
 
-## 🤝 Contributors
-
-- Abhijit Palve
-- Kalpak Kulkarni
-
 ✨ Thank You for checking out Smart Resume Analyzer!
