@@ -79,7 +79,7 @@ README.md
 
 1. Clone the Repository
    ```bash
-   git clone https://github.com/your-username/smart-resume-analyzer.git
+   git clone https://github.com/AbhijitPalve1506/smart-resume-analyzer.git
    cd smart-resume-analyzer
    ```
 
