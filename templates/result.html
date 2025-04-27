@@ -1,48 +1,3 @@
-
-<!-- 1This is correct one -->
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Analysis Result</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <div class="container">
-    
-        <h3>Analysis Result</h3>
-        <p><strong>Predicted Job Category:</strong> {{ predicted_category }}</p>
-        <p><strong>Semantic Similarity:</strong> {{ semantic_score }}%</p>
-        <p><strong>Skill Match Score:</strong> {{ skill_match_score }}%</p>
-        <p><strong>Final Fit Score:</strong> {{ final_fit_score }}%</p>
-        <p><strong>Matched Skills:</strong> {{ matched_skills | join(', ') }}</p>
-        <p><strong>Missing Skills:</strong> {{ missing_skills | join(', ') }}</p>
-        
-        <h3>🎓 Recommended Courses for Missing Skills</h3>
-            <ul>
-            {% for skill, courses in recommended_courses.items() %}
-                <li><strong>{{ skill }}</strong>:
-                <ul>
-                    {% for course in courses %}
-                    {% if course.title %}
-                        <li><a href="{{ course.url }}" target="_blank">{{ course.title }}</a></li>
-                    {% else %}
-                        <li>{{ course }}</li>
-                    {% endif %}
-                    {% endfor %}
-                </ul>
-                </li>
-            {% endfor %}
-            </ul>
-
-
-        <a href="{{ url_for('index') }}">Analyze Another Resume</a>
-    </div>
-</body>
-</html> -->
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -457,19 +412,14 @@
         <div class="logo">
             <div class="logo-icon">⭐</div>
             <div>
-                <div class="logo-text">CarrierNavigator</div>
-                <div class="tagline">Navigate Your Career Path With Confidence</div>
+                <div class="logo-text">Smart Resume Analyzer</div>
+                <div class="tagline">Elevate your job application with the insights</div>
             </div>
         </div>
     </div>
 
     <div class="container">
         <h1>📊 Resume Analysis Results</h1>
-        
-        <div class="category-card">
-            <div class="category-label">PREDICTED JOB CATEGORY</div>
-            <div class="category-value">{{ predicted_category }}</div>
-        </div>
         
         <div class="score-cards">
             <div class="score-card">
@@ -534,7 +484,7 @@
     </div>
 
     <footer>
-        &copy; 2025 CarrierNavigator - Navigate Your Career Path With Confidence
+        &copy; 2025 Smart Resume Analyzer - Elevate your job application with the insights
     </footer>
 
     <script>

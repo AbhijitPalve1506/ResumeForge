@@ -1,6 +1,3 @@
-
-
-
 # All is Correct
 from flask import Flask, request, render_template
 import os
@@ -16,9 +13,6 @@ import PyPDF2
 import docx
 import requests
 
-# YOUTUBE_API_KEY = "YOUR_API_KEY_HERE"
-
-
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
@@ -29,13 +23,8 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 tokenizer = RobertaTokenizer.from_pretrained("roberta-base")
 roberta_model = RobertaModel.from_pretrained("roberta-base").to(device)
 
-with open("CarrierNavigator/models/resume_model.pkl", "rb") as f:
-    model = pickle.load(f)
-with open("CarrierNavigator/models/resume_vectorizer.pkl", "rb") as f:
-    vectorizer = pickle.load(f)
-
 # Load the courses from the JSON file
-with open("CarrierNavigator/data/online_courses_dataset.json", "r") as f:
+with open("C:\Career Navigator\data\online_courses_dataset.json", "r") as f:
     course_dict = json.load(f)
 
 # ========== Utility Functions ==========
@@ -72,13 +61,6 @@ def match_skills_fuzzy(resume_text, required_skills, threshold=80):
     return list(set(matched))
 
 # def recommend_courses(missing_skills):
-# #     # Use the loaded course_dict from the JSON file
-#     return {
-#         skill: course_dict.get(skill.lower(), ["🔍 Course not found. Search manually."])
-#         for skill in missing_skills
-#     }
-
-
 def recommend_courses(missing_skills):
     recommendations = {}
     for skill in missing_skills:
@@ -90,45 +72,6 @@ def recommend_courses(missing_skills):
         else:
             recommendations[skill] = ["🔍 Course not found. Search manually."]
     return recommendations
-
-
-
-# ========== Routes ==========
-
-
-
-# def fetch_youtube_courses(skill, max_results=2):
-    # search_url = "https://www.googleapis.com/youtube/v3/search"
-#     params = {
-#         "part": "snippet",
-#         "q": f"{skill} tutorial",
-#         "key": YOUTUBE_API_KEY,
-#         "type": "video",
-#         "maxResults": max_results,
-#         "videoDuration": "medium"
-#     }
-
-#     try:
-#         response = requests.get(search_url, params=params)
-#         if response.status_code == 200:
-#             data = response.json()
-#             return [
-#                 {
-#                     "title": item["snippet"]["title"],
-#                     "url": f"https://www.youtube.com/watch?v={item['id']['videoId']}"
-#                 }
-#                 for item in data.get("items", [])
-#             ]
-#         else:
-#             print(f"⚠️ YouTube API error: {response.text}")
-#             return []
-#     except Exception as e:
-#         print(f"⚠️ Exception during YouTube API call: {e}")
-#         return []
-
-
-
-
 
 @app.route('/')
 def home():
@@ -157,10 +100,6 @@ def upload():
     cleaned_resume = preprocess(resume_text)
     cleaned_jd = preprocess(job_description)
 
-    # Predict Job Category
-    tfidf_vec = vectorizer.transform([cleaned_resume])
-    predicted_category = model.predict(tfidf_vec)[0]
-
     # Semantic Similarity
     resume_embed = get_roberta_embedding(cleaned_resume)
     jd_embed = get_roberta_embedding(cleaned_jd)
@@ -181,7 +120,6 @@ def upload():
 
     return render_template(
         'result.html',
-        predicted_category=predicted_category,
         semantic_score=semantic_score,
         skill_match_score=round(skill_match_score, 2),
         final_fit_score=final_fit_score,
@@ -243,4 +181,3 @@ def multi_upload():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
