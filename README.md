@@ -1,4 +1,4 @@
-# Smart Resume Analyzer
+# ResumeForge
 
 🔍 Project Overview
 
