@@ -103,7 +103,7 @@ README.md
    python app.py
    ```
 
-6. Visit 
+6. Open your browser and navigate to
    ```
    http://127.0.0.1:5000/
    ```
@@ -114,3 +114,6 @@ README.md
 - The current version uses **basic HTML templates** — can be enhanced later with Bootstrap/Tailwind for UI improvements.
 
 ✨ Thank You for checking out Smart Resume Analyzer!
+
+## 📄 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
